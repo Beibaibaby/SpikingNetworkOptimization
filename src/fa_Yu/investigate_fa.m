@@ -109,7 +109,7 @@ end
 %%%%%%%%%%%%%%%%%%%%
 
 
-data_dim=50；
+data_dim=50;
 latent_dim=5;
 %true_params.L  = randn(50, 5);
 true_params.Ph = 0.1 * (1:data_dim)';
@@ -264,7 +264,7 @@ save('../investigate_fa_feb17_cvonly.mat','d_shared_var','true_d_shared', 'cv_m'
 %%%TEST latent vs real m%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-data_dim=100；
+data_dim=100;
 latent_dim=10;
 true_params.L  = randn(data_dim, latent_dim);
 true_params.Ph = 0.1 * (1:data_dim)';

@@ -14,8 +14,8 @@ function SNOPS_short_demo(target_stats_name,simulator,parameter_range,max_iter,T
 
 
 warning('off')
-addpath('./src')
-addpath('./src/fa_Yu')
+%addpath('./src')
+%addpath('./src/fa_Yu')
 
 
 [obj_configs,optimization_opt]=generate_config('T', T,...
