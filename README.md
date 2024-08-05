@@ -1,4 +1,4 @@
-SNOPS (Spiking Network Optimization using Population Statistics) 
+AD SNOPS (Spiking Network Optimization using Population Statistics) 
 =================
 Code accompanying the manuscript _Automated customization of large-scale spiking network models to neuronal population activity_    
 Shenghao Wu, Chengcheng Huang, Adam Snyder, Matthew Smith*, Brent Doiron*, and Byron Yu*
