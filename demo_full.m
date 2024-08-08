@@ -15,10 +15,30 @@
 
 
 clear; clc; close all;
-addpath('src')
+%addpath('src')
 
 
-for i = 1:10
+%for i = 1:10
+%    fprintf('generate config')
+%    [obj_configs,optimization_opt]=generate_config('is_spatial', 1,... % =1 using the SBN, =0 using the CBN.
+%                                                   'max_time', 3600*7*24,... % max running time (in seconds).
+%                                                   'n_check', 10,... % results recycling checking interval. if changed to 1e6, turn off recycling.
+%                                                   'min_cost_eval', 2,... %number of min evaluations for intensification, the larger the more stable final results are.
+%                                                   'max_cost_eval', 3,... %number of max evaluations for intensification, the larger the more stable final results are.
+%                                                   'x_range',[1,25; 1,25; 0,0.25; 0,0.25; 0,0.25; -150,0; 0,150; -150,0; 0,150; 0,150; 0,150],... % search region, in [n_params, 2]. For the SBN, this  correspond to: taudsynI, taudsynE, mean_sigmaRRIs, mean_sigmaRREs, mean_sigmaRXs, JrEI, JrIE, JrII, JrEE, JrEX, JrIX
+%                                                   'real_data_name', strcat('demo_sbn_simu_',string(i)),... % name pattern for the target stats, must be placed under /data.
+%                                                   'filename', strcat('demo_recy_bo_output_',string(i))); % name pattern for the logging files, will be placed under /results. Note: filename must end with "_bo_output_" for the recyling mechanism to identify all concurrent files
+%    fprintf('choose opt method')
+%    optimization_algo=1; % Use Bayesian optimization as the backbone
+%    fprintf('start optimization')
+%    eval(strcat(obj_configs.filename,'=batch(@()run_bayes(obj_configs, optimization_opt, optimization_algo), 0, {});'));
+%    fprintf('end optimization')
+%end
+
+%clear; clc; close all;
+
+for i = 1:2
+    fprintf('Generate config for simulation %d\n', i);
     [obj_configs,optimization_opt]=generate_config('is_spatial', 1,... % =1 using the SBN, =0 using the CBN.
                                                    'max_time', 3600*7*24,... % max running time (in seconds).
                                                    'n_check', 10,... % results recycling checking interval. if changed to 1e6, turn off recycling.
@@ -28,9 +48,10 @@ for i = 1:10
                                                    'real_data_name', strcat('demo_sbn_simu_',string(i)),... % name pattern for the target stats, must be placed under /data.
                                                    'filename', strcat('demo_recy_bo_output_',string(i))); % name pattern for the logging files, will be placed under /results. Note: filename must end with "_bo_output_" for the recyling mechanism to identify all concurrent files
 
-    optimization_algo=1; % Use Bayesian optimization as the backbone
-    eval(strcat(obj_configs.filename,'=batch(@()run_bayes(obj_configs, optimization_opt, optimization_algo), 0, {});'));
-
+    fprintf('Starting optimization using Bayesian optimization for simulation %d\n', i);
+    % Assuming `run_bayes` is modified to be compatible with compiled code
+    run_bayes(obj_configs, optimization_opt, 1); % Direct call without `batch`
+    fprintf('Optimization completed for simulation %d\n', i);
 end
 
 
@@ -41,7 +62,7 @@ end
 %%%%%%%%%%%%%loading logging files (uncomment & run when you want to check the results)%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%{
+
 file_pattr = 'demo_recy_bo_output';
 nthread = 10;
 min_costs=[]; %minimal cost for each customization task
@@ -59,8 +80,10 @@ for jobid=1:nthread
   try
     results_name = strcat('./results/', file_pattr, string(jobid), '.mat');
     stats_name=strcat('./results/', file_pattr, string(jobid), '_stats.mat');
+    fprintf('results_name: %s\n', results_name);
     load(results_name)
     load(stats_name)
+    fprintf('loaded');
     y_trains=[y_trains;y_train];
     x_trains=[x_trains;x_train];
     stats = [stats;full_stats];
@@ -95,5 +118,5 @@ for jobid=1:nthread
     fprintf('error loading file %d\n', jobid)
   end
 end
-%}
+
 

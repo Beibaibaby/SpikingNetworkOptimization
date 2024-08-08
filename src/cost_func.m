@@ -26,7 +26,7 @@ if ~obj_configs.is_spatial
 end
 
 %Configuration for the SNN simulation and activity statistics
-addpath('./src/fa_Yu/');
+%addpath('./src/fa_Yu/');
 rng shuffle;
 tic
 opt=obj_configs.opt;

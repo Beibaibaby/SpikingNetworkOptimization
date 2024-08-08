@@ -10,7 +10,7 @@ function run_bayes(obj_configs, optimization_opt, optimization_algo)
 %                               fitting).
 
 
-
+fprintf('Hello')
 %Random seed for running on cluster
 seed_offset = randi(floor(intmax/10));
 rng(rand(1)*1000 + seed_offset);
@@ -32,6 +32,8 @@ elseif ~isempty(optimization_opt.base_name) %intensify if base file is there; us
 	end
 	
 end
+
+fprintf('Hello2')
 
 %Preparing cost function wrapper
 fun=@(x,is_surrogate)cost_func(x,is_surrogate,obj_configs);
