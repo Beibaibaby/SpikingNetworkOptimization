@@ -123,7 +123,10 @@ end
 save(save_name,'x_train','y_train','y_feasibility','optimization_time','incumbent_std')
 
 is_better=0;
+fprintf('Optimization begins\n')
+fprintf("Max iteration: %d\n",max_iter)	
 for kk=1:max_iter
+    fprintf('Iteration %d\n',kk)
     if sum(optimization_time)<=max_time | nanmin(y_train) < cost_stopping_thres
         t_init=tic;
         if mod (kk, n_check)==0

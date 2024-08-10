@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=full_snops_demo
+#SBATCH --job-name=monkey36
 #SBATCH --account=doiron-lab
 #SBATCH --partition=tier1q
 #SBATCH --nodes=1
@@ -20,4 +20,4 @@ export LD_LIBRARY_PATH=/apps/commercial/software/matlab/2019b/bin/glnxa64:/apps/
 cd /gpfs/data/doiron-lab/draco/AD_codes/SpikingNetworkOptimization
 
 # Run the compiled MATLAB executable
-./full_draco_5
+./monkey_36
