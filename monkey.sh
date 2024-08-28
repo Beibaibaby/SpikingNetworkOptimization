@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=monkey36
+#SBATCH --job-name=monkey50
 #SBATCH --account=doiron-lab
 #SBATCH --partition=tier1q
 #SBATCH --nodes=1
@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --time=168:00:00  # 7 days, align with the expected 168 hours runtime
 #SBATCH --mem=60GB  # Adjust based on your memory requirement estimation
-#SBATCH --output=/gpfs/data/doiron-lab/draco/out_ad/full_snops_demo.%j.txt
-#SBATCH --error=/gpfs/data/doiron-lab/draco/out_ad/full_snops_demo.%j.err
+#SBATCH --output=/gpfs/data/doiron-lab/draco/out_monkey/full_snops_demo.%j.txt
+#SBATCH --error=/gpfs/data/doiron-lab/draco/out_monkey/full_snops_demo.%j.err
 
 # Load the MATLAB module
 module load matlab  
@@ -20,4 +20,4 @@ export LD_LIBRARY_PATH=/apps/commercial/software/matlab/2019b/bin/glnxa64:/apps/
 cd /gpfs/data/doiron-lab/draco/AD_codes/SpikingNetworkOptimization
 
 # Run the compiled MATLAB executable
-./monkey_36
+./monkey_50

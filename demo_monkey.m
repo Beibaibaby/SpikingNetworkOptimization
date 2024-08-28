@@ -37,7 +37,7 @@ clear; clc; close all;
 
 %clear; clc; close all;
 
-for i = 36:36
+for i = 50:50
     fprintf('Generate config for simulation %d\n', i);
     [obj_configs,optimization_opt]=generate_config('is_spatial', 1,... % =1 using the SBN, =0 using the CBN.
                                                    'max_time', 3600*7*24,... % max running time (in seconds).
