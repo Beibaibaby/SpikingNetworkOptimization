@@ -3,6 +3,8 @@
 # Directory where your MATLAB files and scripts are located
 WORK_DIR="/gpfs/data/doiron-lab/draco/AD_codes/SpikingNetworkOptimization"
 
+module load matlab
+
 # Loop through simulations 1 to 10
 for i in {1..10}
 do
@@ -20,8 +22,8 @@ do
 #SBATCH --cpus-per-task=10
 #SBATCH --time=200:00:00
 #SBATCH --mem=50GB
-#SBATCH --output=/gpfs/data/doiron-lab/draco/out_matt/full_snops_demo.%j.txt
-#SBATCH --error=/gpfs/data/doiron-lab/draco/out_matt/full_snops_demo.%j.err
+#SBATCH --output=/gpfs/data/doiron-lab/draco/out_dave/dave_demo.%j.txt
+#SBATCH --error=/gpfs/data/doiron-lab/draco/out_dave/dave_demo.%j.err
 
 module load matlab
 
